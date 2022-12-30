@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:engineer_study_app/note.dart';
+import 'package:engineer_study_app/note_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -120,6 +122,9 @@ class Editor extends HookConsumerWidget {
                         ),
                         controller: textController,
                         onChanged: (nextText) {
+                          // ref
+                          //     .watch(previewProvider.notifier)
+                          //     .previewText(nextText);
                           ref
                               .read(noteListProvider.notifier)
                               .update(id: noteId, text: nextText);

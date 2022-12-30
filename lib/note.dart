@@ -1,5 +1,6 @@
 // 保存したデータを削除、更新、引用など利用する場面で、
 // 重複しない一意のIDを生成
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
@@ -45,3 +46,11 @@ class Note {
         'updatedAt': updatedAt.toIso8601String(),
       };
 }
+
+// class PreviewNoteNotifier extends StateNotifier {
+//   PreviewNoteNotifier() : super('');
+
+//   void previewText(String note) {
+//     state = note;
+//   }
+// }

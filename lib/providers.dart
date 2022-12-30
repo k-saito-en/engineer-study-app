@@ -7,9 +7,12 @@ import 'package:path_provider/path_provider.dart';
 import 'note_list.dart';
 import 'note.dart';
 
-// refを受け取ってNoteList()を実行する状態管理プロバイダー
+// refを受け取ってNoteList()を管理、変更するプロバイダー
 final noteListProvider =
     StateNotifierProvider<NoteList, List<Note>>((ref) => NoteList());
+
+// // リアルタイムでプレビュータブに編集タブの変更を反映するプロバイダー
+// final previewProvider = StateNotifierProvider((ref) => PreviewNoteNotifier());
 
 // refを受け取って非同期処理を実行するプロバイダー
 final initialProvider = FutureProvider<bool>((ref) async {
