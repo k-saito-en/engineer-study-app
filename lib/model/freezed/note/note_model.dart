@@ -9,7 +9,7 @@ abstract class NoteStateData with _$NoteStateData {
   factory NoteStateData({
     @Default(false) bool isLoading,
     @Default(false) bool isReadyData,
-    @Default([]) List<NoteItem> todoItems,
+    @Default([]) List<NoteItemData> noteItems,
   }) = _NoteStateData;
 }
 

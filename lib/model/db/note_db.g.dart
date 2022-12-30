@@ -3,13 +3,13 @@
 part of 'note_db.dart';
 
 // ignore_for_file: type=lint
-class NoteItem extends DataClass implements Insertable<NoteItem> {
+class NoteItemData extends DataClass implements Insertable<NoteItemData> {
   final int id;
   final String title;
   final String noteText;
   final DateTime? limitDate;
   final bool isNotify;
-  const NoteItem(
+  const NoteItemData(
       {required this.id,
       required this.title,
       required this.noteText,
@@ -28,8 +28,8 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
     return map;
   }
 
-  NoteItemsCompanion toCompanion(bool nullToAbsent) {
-    return NoteItemsCompanion(
+  NoteItemCompanion toCompanion(bool nullToAbsent) {
+    return NoteItemCompanion(
       id: Value(id),
       title: Value(title),
       noteText: Value(noteText),
@@ -40,10 +40,10 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
     );
   }
 
-  factory NoteItem.fromJson(Map<String, dynamic> json,
+  factory NoteItemData.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return NoteItem(
+    return NoteItemData(
       id: serializer.fromJson<int>(json['id']),
       title: serializer.fromJson<String>(json['title']),
       noteText: serializer.fromJson<String>(json['noteText']),
@@ -63,13 +63,13 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
     };
   }
 
-  NoteItem copyWith(
+  NoteItemData copyWith(
           {int? id,
           String? title,
           String? noteText,
           Value<DateTime?> limitDate = const Value.absent(),
           bool? isNotify}) =>
-      NoteItem(
+      NoteItemData(
         id: id ?? this.id,
         title: title ?? this.title,
         noteText: noteText ?? this.noteText,
@@ -78,7 +78,7 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
       );
   @override
   String toString() {
-    return (StringBuffer('NoteItem(')
+    return (StringBuffer('NoteItemData(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('noteText: $noteText, ')
@@ -93,7 +93,7 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is NoteItem &&
+      (other is NoteItemData &&
           other.id == this.id &&
           other.title == this.title &&
           other.noteText == this.noteText &&
@@ -101,27 +101,27 @@ class NoteItem extends DataClass implements Insertable<NoteItem> {
           other.isNotify == this.isNotify);
 }
 
-class NoteItemsCompanion extends UpdateCompanion<NoteItem> {
+class NoteItemCompanion extends UpdateCompanion<NoteItemData> {
   final Value<int> id;
   final Value<String> title;
   final Value<String> noteText;
   final Value<DateTime?> limitDate;
   final Value<bool> isNotify;
-  const NoteItemsCompanion({
+  const NoteItemCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.noteText = const Value.absent(),
     this.limitDate = const Value.absent(),
     this.isNotify = const Value.absent(),
   });
-  NoteItemsCompanion.insert({
+  NoteItemCompanion.insert({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.noteText = const Value.absent(),
     this.limitDate = const Value.absent(),
     this.isNotify = const Value.absent(),
   });
-  static Insertable<NoteItem> custom({
+  static Insertable<NoteItemData> custom({
     Expression<int>? id,
     Expression<String>? title,
     Expression<String>? noteText,
@@ -137,13 +137,13 @@ class NoteItemsCompanion extends UpdateCompanion<NoteItem> {
     });
   }
 
-  NoteItemsCompanion copyWith(
+  NoteItemCompanion copyWith(
       {Value<int>? id,
       Value<String>? title,
       Value<String>? noteText,
       Value<DateTime?>? limitDate,
       Value<bool>? isNotify}) {
-    return NoteItemsCompanion(
+    return NoteItemCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
       noteText: noteText ?? this.noteText,
@@ -175,7 +175,7 @@ class NoteItemsCompanion extends UpdateCompanion<NoteItem> {
 
   @override
   String toString() {
-    return (StringBuffer('NoteItemsCompanion(')
+    return (StringBuffer('NoteItemCompanion(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('noteText: $noteText, ')
@@ -186,12 +186,12 @@ class NoteItemsCompanion extends UpdateCompanion<NoteItem> {
   }
 }
 
-class $NoteItemsTable extends NoteItems
-    with TableInfo<$NoteItemsTable, NoteItem> {
+class $NoteItemTable extends NoteItem
+    with TableInfo<$NoteItemTable, NoteItemData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $NoteItemsTable(this.attachedDatabase, [this._alias]);
+  $NoteItemTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -242,11 +242,11 @@ class $NoteItemsTable extends NoteItems
   List<GeneratedColumn> get $columns =>
       [id, title, noteText, limitDate, isNotify];
   @override
-  String get aliasedName => _alias ?? 'note_items';
+  String get aliasedName => _alias ?? 'note_item';
   @override
-  String get actualTableName => 'note_items';
+  String get actualTableName => 'note_item';
   @override
-  VerificationContext validateIntegrity(Insertable<NoteItem> instance,
+  VerificationContext validateIntegrity(Insertable<NoteItemData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -275,9 +275,9 @@ class $NoteItemsTable extends NoteItems
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  NoteItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+  NoteItemData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return NoteItem(
+    return NoteItemData(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       title: attachedDatabase.typeMapping
@@ -292,17 +292,17 @@ class $NoteItemsTable extends NoteItems
   }
 
   @override
-  $NoteItemsTable createAlias(String alias) {
-    return $NoteItemsTable(attachedDatabase, alias);
+  $NoteItemTable createAlias(String alias) {
+    return $NoteItemTable(attachedDatabase, alias);
   }
 }
 
 abstract class _$MyDatabase extends GeneratedDatabase {
   _$MyDatabase(QueryExecutor e) : super(e);
-  late final $NoteItemsTable noteItems = $NoteItemsTable(this);
+  late final $NoteItemTable noteItem = $NoteItemTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [noteItems];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [noteItem];
 }

@@ -8,7 +8,7 @@ import 'dart:io';
 
 part 'note_db.g.dart';
 
-class NoteItems extends Table {
+class NoteItem extends Table {
   IntColumn get id => integer().autoIncrement()(); //primary key
   TextColumn get title =>
       text().withDefault(const Constant('')).withLength(min: 1)();
@@ -35,7 +35,7 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DriftDatabase(tables: [NoteItems])
+@DriftDatabase(tables: [NoteItem])
 class MyDatabase extends _$MyDatabase {
   MyDatabase() : super(_openConnection());
 
@@ -43,15 +43,19 @@ class MyDatabase extends _$MyDatabase {
   int get schemaVersion => 1;
 
   //全てのデータ取得
-  Future<List<NoteItem>> readAllNoteItemData() => select(noteItems).get();
+  Future<List<NoteItemData>> readAllNoteData() => select(noteItem).get();
+  //SELECT * FROM ToDoItemTable
 
   //追加
-  Future writeTodo(NoteItemsCompanion data) => into(noteItems).insert(data);
+  Future writeNote(NoteItemCompanion data) => into(noteItem).insert(data);
+  //INSERT INTO ToDoItemTable VALUES(id, 'title', 'description', 'limitDate')
 
   //更新
-  Future updateTodo(NoteItem data) => update(noteItems).replace(data);
+  Future updateNote(NoteItemData data) => update(noteItem).replace(data);
+  //UPDATE ToDoItemTable SET title = 'title', description = 'description', limitDate = 'limitDate'
 
   //削除
-  Future deleteTodo(int id) =>
-      (delete(noteItems)..where((it) => it.id.equals(id))).go();
+  Future deleteNote(int id) =>
+      (delete(noteItem)..where((it) => it.id.equals(id))).go();
+  //DELETE FROM ToDoItemTable WHERE id = id
 }

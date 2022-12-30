@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NoteStateData {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isReadyData => throw _privateConstructorUsedError;
-  List<NoteItem> get todoItems => throw _privateConstructorUsedError;
+  List<NoteItemData> get noteItems => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteStateDataCopyWith<NoteStateData> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $NoteStateDataCopyWith<$Res> {
           NoteStateData value, $Res Function(NoteStateData) then) =
       _$NoteStateDataCopyWithImpl<$Res, NoteStateData>;
   @useResult
-  $Res call({bool isLoading, bool isReadyData, List<NoteItem> todoItems});
+  $Res call({bool isLoading, bool isReadyData, List<NoteItemData> noteItems});
 }
 
 /// @nodoc
@@ -49,7 +49,7 @@ class _$NoteStateDataCopyWithImpl<$Res, $Val extends NoteStateData>
   $Res call({
     Object? isLoading = null,
     Object? isReadyData = null,
-    Object? todoItems = null,
+    Object? noteItems = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -60,10 +60,10 @@ class _$NoteStateDataCopyWithImpl<$Res, $Val extends NoteStateData>
           ? _value.isReadyData
           : isReadyData // ignore: cast_nullable_to_non_nullable
               as bool,
-      todoItems: null == todoItems
-          ? _value.todoItems
-          : todoItems // ignore: cast_nullable_to_non_nullable
-              as List<NoteItem>,
+      noteItems: null == noteItems
+          ? _value.noteItems
+          : noteItems // ignore: cast_nullable_to_non_nullable
+              as List<NoteItemData>,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_NoteStateDataCopyWith<$Res>
       __$$_NoteStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isReadyData, List<NoteItem> todoItems});
+  $Res call({bool isLoading, bool isReadyData, List<NoteItemData> noteItems});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$_NoteStateDataCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isReadyData = null,
-    Object? todoItems = null,
+    Object? noteItems = null,
   }) {
     return _then(_$_NoteStateData(
       isLoading: null == isLoading
@@ -103,10 +103,10 @@ class __$$_NoteStateDataCopyWithImpl<$Res>
           ? _value.isReadyData
           : isReadyData // ignore: cast_nullable_to_non_nullable
               as bool,
-      todoItems: null == todoItems
-          ? _value._todoItems
-          : todoItems // ignore: cast_nullable_to_non_nullable
-              as List<NoteItem>,
+      noteItems: null == noteItems
+          ? _value._noteItems
+          : noteItems // ignore: cast_nullable_to_non_nullable
+              as List<NoteItemData>,
     ));
   }
 }
@@ -117,8 +117,8 @@ class _$_NoteStateData implements _NoteStateData {
   _$_NoteStateData(
       {this.isLoading = false,
       this.isReadyData = false,
-      final List<NoteItem> todoItems = const []})
-      : _todoItems = todoItems;
+      final List<NoteItemData> noteItems = const []})
+      : _noteItems = noteItems;
 
   @override
   @JsonKey()
@@ -126,18 +126,18 @@ class _$_NoteStateData implements _NoteStateData {
   @override
   @JsonKey()
   final bool isReadyData;
-  final List<NoteItem> _todoItems;
+  final List<NoteItemData> _noteItems;
   @override
   @JsonKey()
-  List<NoteItem> get todoItems {
-    if (_todoItems is EqualUnmodifiableListView) return _todoItems;
+  List<NoteItemData> get noteItems {
+    if (_noteItems is EqualUnmodifiableListView) return _noteItems;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_todoItems);
+    return EqualUnmodifiableListView(_noteItems);
   }
 
   @override
   String toString() {
-    return 'NoteStateData(isLoading: $isLoading, isReadyData: $isReadyData, todoItems: $todoItems)';
+    return 'NoteStateData(isLoading: $isLoading, isReadyData: $isReadyData, noteItems: $noteItems)';
   }
 
   @override
@@ -150,12 +150,12 @@ class _$_NoteStateData implements _NoteStateData {
             (identical(other.isReadyData, isReadyData) ||
                 other.isReadyData == isReadyData) &&
             const DeepCollectionEquality()
-                .equals(other._todoItems, _todoItems));
+                .equals(other._noteItems, _noteItems));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, isReadyData,
-      const DeepCollectionEquality().hash(_todoItems));
+      const DeepCollectionEquality().hash(_noteItems));
 
   @JsonKey(ignore: true)
   @override
@@ -168,14 +168,14 @@ abstract class _NoteStateData implements NoteStateData {
   factory _NoteStateData(
       {final bool isLoading,
       final bool isReadyData,
-      final List<NoteItem> todoItems}) = _$_NoteStateData;
+      final List<NoteItemData> noteItems}) = _$_NoteStateData;
 
   @override
   bool get isLoading;
   @override
   bool get isReadyData;
   @override
-  List<NoteItem> get todoItems;
+  List<NoteItemData> get noteItems;
   @override
   @JsonKey(ignore: true)
   _$$_NoteStateDataCopyWith<_$_NoteStateData> get copyWith =>
