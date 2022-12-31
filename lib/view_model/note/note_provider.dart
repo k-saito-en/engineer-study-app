@@ -15,7 +15,7 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
     }
     NoteItemCompanion entry = NoteItemCompanion(
       title: Value(data.title),
-      noteText: Value(data.description),
+      noteText: Value(data.noteText),
       limitDate: Value(data.limit),
       isNotify: Value(data.isNotify),
     );
@@ -34,12 +34,12 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
   }
 
   //更新処理部分
-  updateData(NoteItemData data) async {
-    if (data.title.isEmpty) {
+  updateData(TempNoteItemData temp) async {
+    if (temp.title.isEmpty) {
       return;
     }
     state = state.copyWith(isLoading: true);
-    await _db.updateNote(data);
+    await _db.updateNote(temp);
     readData();
     //更新するたびにデータベースを読み込む
   }
@@ -60,9 +60,12 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
   }
 }
 
-final todoDatabaseProvider = StateNotifierProvider((_) {
+final noteDatabaseProvider = StateNotifierProvider((_) {
   NoteDatabaseNotifier notify = NoteDatabaseNotifier();
   notify.readData();
   //初期化処理
   return notify;
 });
+
+final StateProvider<int> currentNoteIndexProvider =
+    StateProvider<int>((ref) => 0);

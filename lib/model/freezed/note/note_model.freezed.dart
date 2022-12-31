@@ -184,8 +184,9 @@ abstract class _NoteStateData implements NoteStateData {
 
 /// @nodoc
 mixin _$TempNoteItemData {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get noteText => throw _privateConstructorUsedError;
   DateTime? get limit => throw _privateConstructorUsedError;
   bool get isNotify => throw _privateConstructorUsedError;
 
@@ -200,7 +201,8 @@ abstract class $TempNoteItemDataCopyWith<$Res> {
           TempNoteItemData value, $Res Function(TempNoteItemData) then) =
       _$TempNoteItemDataCopyWithImpl<$Res, TempNoteItemData>;
   @useResult
-  $Res call({String title, String description, DateTime? limit, bool isNotify});
+  $Res call(
+      {int id, String title, String noteText, DateTime? limit, bool isNotify});
 }
 
 /// @nodoc
@@ -216,19 +218,24 @@ class _$TempNoteItemDataCopyWithImpl<$Res, $Val extends TempNoteItemData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? description = null,
+    Object? noteText = null,
     Object? limit = freezed,
     Object? isNotify = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      noteText: null == noteText
+          ? _value.noteText
+          : noteText // ignore: cast_nullable_to_non_nullable
               as String,
       limit: freezed == limit
           ? _value.limit
@@ -250,7 +257,8 @@ abstract class _$$_TempNoteItemDataCopyWith<$Res>
       __$$_TempNoteItemDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, DateTime? limit, bool isNotify});
+  $Res call(
+      {int id, String title, String noteText, DateTime? limit, bool isNotify});
 }
 
 /// @nodoc
@@ -264,19 +272,24 @@ class __$$_TempNoteItemDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? description = null,
+    Object? noteText = null,
     Object? limit = freezed,
     Object? isNotify = null,
   }) {
     return _then(_$_TempNoteItemData(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      noteText: null == noteText
+          ? _value.noteText
+          : noteText // ignore: cast_nullable_to_non_nullable
               as String,
       limit: freezed == limit
           ? _value.limit
@@ -294,17 +307,21 @@ class __$$_TempNoteItemDataCopyWithImpl<$Res>
 
 class _$_TempNoteItemData implements _TempNoteItemData {
   _$_TempNoteItemData(
-      {this.title = '',
-      this.description = '',
+      {this.id = 0,
+      this.title = '',
+      this.noteText = '',
       this.limit = null,
       this.isNotify = true});
 
   @override
   @JsonKey()
+  final int id;
+  @override
+  @JsonKey()
   final String title;
   @override
   @JsonKey()
-  final String description;
+  final String noteText;
   @override
   @JsonKey()
   final DateTime? limit;
@@ -314,7 +331,7 @@ class _$_TempNoteItemData implements _TempNoteItemData {
 
   @override
   String toString() {
-    return 'TempNoteItemData(title: $title, description: $description, limit: $limit, isNotify: $isNotify)';
+    return 'TempNoteItemData(id: $id, title: $title, noteText: $noteText, limit: $limit, isNotify: $isNotify)';
   }
 
   @override
@@ -322,9 +339,10 @@ class _$_TempNoteItemData implements _TempNoteItemData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TempNoteItemData &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
+            (identical(other.noteText, noteText) ||
+                other.noteText == noteText) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.isNotify, isNotify) ||
                 other.isNotify == isNotify));
@@ -332,7 +350,7 @@ class _$_TempNoteItemData implements _TempNoteItemData {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, description, limit, isNotify);
+      Object.hash(runtimeType, id, title, noteText, limit, isNotify);
 
   @JsonKey(ignore: true)
   @override
@@ -343,15 +361,18 @@ class _$_TempNoteItemData implements _TempNoteItemData {
 
 abstract class _TempNoteItemData implements TempNoteItemData {
   factory _TempNoteItemData(
-      {final String title,
-      final String description,
+      {final int id,
+      final String title,
+      final String noteText,
       final DateTime? limit,
       final bool isNotify}) = _$_TempNoteItemData;
 
   @override
+  int get id;
+  @override
   String get title;
   @override
-  String get description;
+  String get noteText;
   @override
   DateTime? get limit;
   @override

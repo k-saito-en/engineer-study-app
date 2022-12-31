@@ -1,6 +1,7 @@
 // For more information on using drift, please see https://drift.simonbinder.eu/docs/getting-started/
 
 import 'package:drift/native.dart';
+import 'package:engineer_study_app/model/freezed/note/note_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:drift/drift.dart';
@@ -51,7 +52,13 @@ class MyDatabase extends _$MyDatabase {
   //INSERT INTO ToDoItemTable VALUES(id, 'title', 'description', 'limitDate')
 
   //更新
-  Future updateNote(NoteItemData data) => update(noteItem).replace(data);
+  Future<int> updateNote(TempNoteItemData temp) {
+    return (update(noteItem)..where((tbl) => tbl.id.equals(temp.id))).write(
+      NoteItemCompanion(
+        noteText: Value(temp.noteText),
+      ),
+    );
+  }
   //UPDATE ToDoItemTable SET title = 'title', description = 'description', limitDate = 'limitDate'
 
   //削除
