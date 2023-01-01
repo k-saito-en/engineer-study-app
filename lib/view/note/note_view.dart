@@ -65,15 +65,15 @@ class NoteList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final noteState = ref.watch(noteDatabaseProvider);
+    // final noteState = ref.watch(noteDatabaseProvider);
     //Providerの状態が変化したさいに再ビルドします
     final noteProvider = ref.watch(noteDatabaseProvider.notifier);
     //Providerのメソッドや値を取得します
     //bottomsheetが閉じた際に再ビルドするために使用します。
     List<NoteItemData> noteItems = noteProvider.state.noteItems;
-    //Providerが保持しているtodoItemsを取得します。
+    //Providerが保持しているnoteItemsを取得。
     TempNoteItemData temp = TempNoteItemData();
-    //追加
+    //現在編集中のノートの状態を保持する変数temp
 
     // List<Widget> tiles = _buildNoteList(noteItems, noteProvider);
     //showAlert(context);
@@ -117,6 +117,8 @@ class NoteList extends HookConsumerWidget {
                   ? ""
                   : noteItems[i].limitDate.toString()),
               onTap: () {
+                // tempのidに編集中noteのDBでのidを代入
+                temp = temp.copyWith(id: noteItems[i].id);
                 ref.read(currentNoteIndexProvider.notifier).state = i;
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Editor()));
@@ -129,6 +131,7 @@ class NoteList extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
+          // tempを新規作成時の状態にし、
           temp = temp.copyWith(title: 'Untitled', noteText: 'Memo');
           noteProvider.writeData(temp);
         },

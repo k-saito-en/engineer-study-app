@@ -8,11 +8,12 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
   NoteDatabaseNotifier() : super(NoteStateData());
   //ここからはデータベースに関する処理をこのクラスで行えるように記述します。
   final _db = MyDatabase();
-  //書き込み処理部分
+  //新規作成処理部分
   writeData(TempNoteItemData data) async {
-    if (data.title.isEmpty) {
-      return;
-    }
+    // //新規作成時にタイトルはデフォルトで'Untitled'になるからこの処理要らなくない？
+    // if (data.title.isEmpty) {
+    //   return;
+    // }
     NoteItemCompanion entry = NoteItemCompanion(
       title: Value(data.title),
       noteText: Value(data.noteText),
@@ -41,7 +42,7 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
     state = state.copyWith(isLoading: true);
     await _db.updateNote(temp);
     readData();
-    //更新するたびにデータベースを読み込む
+    //更新するたびにデータベースを読み込み、state(DB状態管理変数)に反映
   }
 
   //データ読み込み処理
@@ -69,3 +70,41 @@ final noteDatabaseProvider = StateNotifierProvider((_) {
 
 final StateProvider<int> currentNoteIndexProvider =
     StateProvider<int>((ref) => 0);
+
+class EditingNoteNotifier extends StateNotifier<TempNoteItemData> {
+  EditingNoteNotifier() : super(TempNoteItemData());
+
+  updateAllTemp(int currentId, String currentTitle, String currentNoteText,
+      DateTime currentLimit, bool currentIsNotify) {
+    state = state.copyWith(
+        id: currentId,
+        title: currentTitle,
+        noteText: currentNoteText,
+        limit: currentLimit,
+        isNotify: currentIsNotify);
+  }
+
+  updateTempId(int currentId) {
+    state = state.copyWith(id: currentId);
+  }
+
+  updateTempTitle(String currentTitle) {
+    state = state.copyWith(title: currentTitle);
+  }
+
+  updateTempNoteText(String currentNoteText) {
+    state = state.copyWith(noteText: currentNoteText);
+  }
+
+  updateTempLimit(DateTime currentLimit) {
+    state = state.copyWith(limit: currentLimit);
+  }
+
+  updateTempIsNotify(bool currentIsNotify) {
+    state = state.copyWith(isNotify: currentIsNotify);
+  }
+}
+
+final editingNoteProvider =
+    StateNotifierProvider<EditingNoteNotifier, TempNoteItemData>(
+        (ref) => EditingNoteNotifier());

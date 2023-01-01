@@ -16,7 +16,7 @@ abstract class NoteStateData with _$NoteStateData {
 
 @freezed
 abstract class TempNoteItemData with _$TempNoteItemData {
-  //このクラスは、入力中のtodoを保持するクラスです。
+  //このクラスは、編集中のNoteを保持するクラスです。
   factory TempNoteItemData({
     @Default(0) int id,
     @Default('') String title,

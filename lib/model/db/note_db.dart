@@ -49,14 +49,15 @@ class MyDatabase extends _$MyDatabase {
 
   //追加
   Future writeNote(NoteItemCompanion data) => into(noteItem).insert(data);
-  //INSERT INTO ToDoItemTable VALUES(id, 'title', 'description', 'limitDate')
+  //INSERT INTO NoteItemTable VALUES(id, 'title', 'description', 'limitDate')
 
   //更新
   Future<int> updateNote(TempNoteItemData temp) {
     return (update(noteItem)..where((tbl) => tbl.id.equals(temp.id))).write(
       NoteItemCompanion(
-        noteText: Value(temp.noteText),
-      ),
+          title: Value(temp.title),
+          noteText: Value(temp.noteText),
+          isNotify: Value(temp.isNotify)),
     );
   }
   //UPDATE ToDoItemTable SET title = 'title', description = 'description', limitDate = 'limitDate'

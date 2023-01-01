@@ -1,9 +1,4 @@
-import 'dart:developer';
-
 import 'package:engineer_study_app/model/db/note_db.dart';
-import 'package:engineer_study_app/note.dart';
-import 'package:engineer_study_app/note_list.dart';
-import 'package:engineer_study_app/view/note/note_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,6 +21,8 @@ class Editor extends HookConsumerWidget {
     final noteProvider = ref.watch(noteDatabaseProvider.notifier);
     List<NoteItemData> noteItems = noteProvider.state.noteItems;
 
+    final editNoteProvider = ref.watch(editingNoteProvider.notifier);
+
     // final note = noteId.isEmpty
     //     ? null
     //     : noteItems.firstWhere((note) => note.id == noteId);
@@ -36,10 +33,10 @@ class Editor extends HookConsumerWidget {
 
     // 新規作成の場合の処理
     final titleController = useTextEditingController();
-    titleController.text = currentNoteItem?.title ?? '';
+    titleController.text = currentNoteItem.title;
 
     final textController = useTextEditingController();
-    textController.text = currentNoteItem?.noteText ?? '';
+    textController.text = currentNoteItem.noteText;
 
     return DefaultTabController(
         length: 2,
@@ -127,12 +124,12 @@ class Editor extends HookConsumerWidget {
                         ),
                         controller: titleController,
                         onChanged: (value) {
-                          //追加
-                          temp = temp.copyWith(title: value);
+                          editNoteProvider.updateTempTitle(value);
+                          // temp = temp.copyWith(title: value);
                         },
                         onSubmitted: (value) {
-                          //追加
-                          temp = temp.copyWith(title: value);
+                          editNoteProvider.updateTempTitle(value);
+                          // temp = temp.copyWith(title: value);
                         },
                         enabled: currentNoteItem != null,
                       ),
@@ -157,13 +154,13 @@ class Editor extends HookConsumerWidget {
                         ),
                         controller: textController,
                         onChanged: (value) {
-                          //追加
-                          temp = temp.copyWith(noteText: value);
+                          editNoteProvider.updateTempNoteText(value);
+                          // temp = temp.copyWith(noteText: value);
                         },
                         // 入力完了後の処理
                         onSubmitted: (value) {
-                          //追加
-                          temp = temp.copyWith(noteText: value);
+                          editNoteProvider.updateTempNoteText(value);
+                          // temp = temp.copyWith(noteText: value);
                         },
                         // onChanged: (nextText) {
                         //   // ref
@@ -173,6 +170,7 @@ class Editor extends HookConsumerWidget {
                         //       .read(noteListProvider.notifier)
                         //       .update(id: noteId, text: nextText);
                         // },
+
                         enabled: currentNoteItem != null,
                       ),
                     ),
@@ -180,5 +178,8 @@ class Editor extends HookConsumerWidget {
                 ),
               ),
             ])));
+
+    // tempがおかしい
+    // idは積み上がっていく
   }
 }
