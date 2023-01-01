@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:engineer_study_app/view_model/note/note_provider.dart';
-import 'package:engineer_study_app/model/freezed/note/note_model.dart';
 
 class Editor extends HookConsumerWidget {
   const Editor({
@@ -23,10 +22,6 @@ class Editor extends HookConsumerWidget {
 
     final editNoteProvider = ref.watch(editingNoteProvider.notifier);
 
-    // final note = noteId.isEmpty
-    //     ? null
-    //     : noteItems.firstWhere((note) => note.id == noteId);
-    // 画面表示のノート数は４つなのに8番目の要素にアクセスしようとしている
     final currentNoteItem = noteItems[noteIndex];
 
     // 新規作成の場合の処理
@@ -57,12 +52,10 @@ class Editor extends HookConsumerWidget {
                     )
                   ],
                   onSelected: (_) {
-                    ref
-                        .watch(noteDatabaseProvider.notifier)
-                        .deleteData(editNoteProvider.state);
+                    noteProvider.deleteData(editNoteProvider.state);
+                    Navigator.pop(context);
                   },
                 ),
-
               ],
               bottom: const TabBar(tabs: [
                 Tab(
@@ -76,9 +69,10 @@ class Editor extends HookConsumerWidget {
             // widgetの大きさが端末画面以上になる場合にスクロールできるようにするwidget
             body: TabBarView(children: [
               // previewタブの実装
-              Container(
-                  margin: const EdgeInsets.all(20),
-                  child: Markdown(data: editNoteProvider.state.noteText)),
+              // Container(
+              //     margin: const EdgeInsets.all(20),
+              //     child: Markdown(data: editNoteProvider.state.noteText)),
+              PreviewTab(),
               // editingタブの実装
               SingleChildScrollView(
                 child: Column(
@@ -151,5 +145,19 @@ class Editor extends HookConsumerWidget {
 
     // tempがおかしい
     // idは積み上がっていく
+  }
+}
+
+class PreviewTab extends HookConsumerWidget {
+  const PreviewTab({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final editNoteProvider = ref.watch(editingNoteProvider.notifier);
+
+    return Container(
+        margin: const EdgeInsets.all(20),
+        child: Markdown(data: editNoteProvider.state.noteText));
   }
 }

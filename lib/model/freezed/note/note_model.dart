@@ -1,5 +1,4 @@
 import 'package:engineer_study_app/model/db/note_db.dart';
-import 'package:flutter/rendering.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'note_model.freezed.dart';

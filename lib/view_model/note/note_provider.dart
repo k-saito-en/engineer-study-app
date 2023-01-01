@@ -10,10 +10,7 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
   final _db = MyDatabase();
   //新規作成処理部分
   writeData(TempNoteItemData data) async {
-    // //新規作成時にタイトルはデフォルトで'Untitled'になるからこの処理要らなくない？
-    // if (data.title.isEmpty) {
-    //   return;
-    // }
+
     NoteItemCompanion entry = NoteItemCompanion(
       title: Value(data.title),
       noteText: Value(data.noteText),

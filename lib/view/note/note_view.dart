@@ -21,8 +21,6 @@ class NoteList extends HookConsumerWidget {
     List<NoteItemData> noteItems = noteProvider.state.noteItems;
     //Providerが保持しているnoteItemsを取得。
 
-    print(noteItems.length);
-
     return Scaffold(
       body: ListView(children: [
         for (var i = 0; i < noteItems.length; i++) ...[
@@ -77,8 +75,8 @@ class NoteList extends HookConsumerWidget {
         child: const Icon(Icons.add),
         onPressed: () async {
           // tempを新規作成時の状態にし、
-          editNoteProvider.updateTempNoteText('Untitled');
-          editNoteProvider.updateTempTitle('NoteText');
+          editNoteProvider.updateTempNoteText('NoteText');
+          editNoteProvider.updateTempTitle('New Note');
           // temp = temp.copyWith(title: 'Untitled', noteText: 'Memo');
           await noteProvider.writeData(editNoteProvider.state);
         },
