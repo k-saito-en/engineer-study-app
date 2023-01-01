@@ -27,7 +27,7 @@ class NoteDatabaseNotifier extends StateNotifier<NoteStateData> {
   }
 
   //削除処理部分
-  deleteData(NoteItemData data) async {
+  deleteData(TempNoteItemData data) async {
     state = state.copyWith(isLoading: true);
     await _db.deleteNote(data.id);
     readData();
@@ -75,12 +75,13 @@ class EditingNoteNotifier extends StateNotifier<TempNoteItemData> {
   EditingNoteNotifier() : super(TempNoteItemData());
 
   updateAllTemp(int currentId, String currentTitle, String currentNoteText,
-      DateTime currentLimit, bool currentIsNotify) {
+      // DateTime currentLimit, 
+      bool currentIsNotify) {
     state = state.copyWith(
         id: currentId,
         title: currentTitle,
         noteText: currentNoteText,
-        limit: currentLimit,
+        // limit: currentLimit,
         isNotify: currentIsNotify);
   }
 
@@ -96,9 +97,9 @@ class EditingNoteNotifier extends StateNotifier<TempNoteItemData> {
     state = state.copyWith(noteText: currentNoteText);
   }
 
-  updateTempLimit(DateTime currentLimit) {
-    state = state.copyWith(limit: currentLimit);
-  }
+  // updateTempLimit(DateTime currentLimit) {
+  //   state = state.copyWith(limit: currentLimit);
+  // }
 
   updateTempIsNotify(bool currentIsNotify) {
     state = state.copyWith(isNotify: currentIsNotify);

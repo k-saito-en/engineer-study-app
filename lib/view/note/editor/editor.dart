@@ -29,8 +29,6 @@ class Editor extends HookConsumerWidget {
     // 画面表示のノート数は４つなのに8番目の要素にアクセスしようとしている
     final currentNoteItem = noteItems[noteIndex];
 
-    TempNoteItemData temp = TempNoteItemData();
-
     // 新規作成の場合の処理
     final titleController = useTextEditingController();
     titleController.text = currentNoteItem.title;
@@ -46,7 +44,7 @@ class Editor extends HookConsumerWidget {
                   style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.white)),
                   onPressed: () {
-                    noteProvider.updateData(temp);
+                    noteProvider.updateData(editNoteProvider.state);
                     Navigator.pop(context);
                   },
                   child: const Icon(Icons.view_list)),
@@ -61,30 +59,10 @@ class Editor extends HookConsumerWidget {
                   onSelected: (_) {
                     ref
                         .watch(noteDatabaseProvider.notifier)
-                        .deleteData(currentNoteItem);
+                        .deleteData(editNoteProvider.state);
                   },
                 ),
 
-                // if (currentNoteItem != null)
-                //   PopupMenuButton<String>(
-                //     initialValue: '',
-                //     icon: const Icon(Icons.more_vert),
-                //     // 削除処理の呼び出し
-                //     onSelected: (value) {
-                //       ref.read(currentNoteIdProvider.notifier).state = '';
-                //       ref.read(noteListProvider.notifier).delete(note.id);
-
-                //       if (!isLargeScreen) {
-                //         Navigator.pop(context);
-                //       }
-                //     },
-                //     itemBuilder: (BuildContext context) => [
-                //       const PopupMenuItem(
-                //         value: 'delete',
-                //         child: Text('Delete'),
-                //       )
-                //     ],
-                //   ),
               ],
               bottom: const TabBar(tabs: [
                 Tab(
@@ -100,7 +78,7 @@ class Editor extends HookConsumerWidget {
               // previewタブの実装
               Container(
                   margin: const EdgeInsets.all(20),
-                  child: Markdown(data: currentNoteItem.noteText)),
+                  child: Markdown(data: editNoteProvider.state.noteText)),
               // editingタブの実装
               SingleChildScrollView(
                 child: Column(
@@ -162,14 +140,6 @@ class Editor extends HookConsumerWidget {
                           editNoteProvider.updateTempNoteText(value);
                           // temp = temp.copyWith(noteText: value);
                         },
-                        // onChanged: (nextText) {
-                        //   // ref
-                        //   //     .watch(previewProvider.notifier)
-                        //   //     .previewText(nextText);
-                        //   ref
-                        //       .read(noteListProvider.notifier)
-                        //       .update(id: noteId, text: nextText);
-                        // },
 
                         enabled: currentNoteItem != null,
                       ),

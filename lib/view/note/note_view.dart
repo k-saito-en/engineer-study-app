@@ -65,6 +65,8 @@ class NoteList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final editNoteProvider = ref.watch(editingNoteProvider.notifier);
     // final noteState = ref.watch(noteDatabaseProvider);
     //Providerの状態が変化したさいに再ビルドします
     final noteProvider = ref.watch(noteDatabaseProvider.notifier);
@@ -75,8 +77,6 @@ class NoteList extends HookConsumerWidget {
     TempNoteItemData temp = TempNoteItemData();
     //現在編集中のノートの状態を保持する変数temp
 
-    // List<Widget> tiles = _buildNoteList(noteItems, noteProvider);
-    //showAlert(context);
     return Scaffold(
       body: ListView(children: [
         for (var i = 0; i < noteItems.length; i++) ...[
@@ -91,24 +91,19 @@ class NoteList extends HookConsumerWidget {
                   //長さ
                   onPressed: (_) {
                     //押された時の処理
+                    editNoteProvider.updateAllTemp(
+                      noteItems[i].id,
+                      noteItems[i].title,
+                      noteItems[i].noteText,
+                      // noteItems[i].limitDate,
+                      noteItems[i].isNotify);
                     ref
                         .watch(noteDatabaseProvider.notifier)
-                        .deleteData(noteItems[i]);
+                        .deleteData(editNoteProvider.state);
                   },
                   icon: Icons.delete,
                   //アイコン
                 ),
-                // SlidableAction(
-                //   flex: 1,
-                //   onPressed: (_) {
-                //     ref
-                //         .watch(noteDatabaseProvider.notifier)
-                //         .updateData(noteItems[i]);
-                //   },
-                //   icon: noteItems[i].isNotify
-                //       ? Icons.notifications_off
-                //       : Icons.notifications_active,
-                // ),
               ],
             ),
             child: ListTile(
@@ -117,8 +112,14 @@ class NoteList extends HookConsumerWidget {
                   ? ""
                   : noteItems[i].limitDate.toString()),
               onTap: () {
-                // tempのidに編集中noteのDBでのidを代入
-                temp = temp.copyWith(id: noteItems[i].id);
+                // 作業台に編集したいNoteデータを載せるイメージ
+                editNoteProvider.updateAllTemp(
+                  noteItems[i].id,
+                  noteItems[i].title,
+                  noteItems[i].noteText,
+                  // noteItems[i].limitDate,
+                  noteItems[i].isNotify);
+                // temp = temp.copyWith(id: noteItems[i].id);
                 ref.read(currentNoteIndexProvider.notifier).state = i;
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Editor()));
