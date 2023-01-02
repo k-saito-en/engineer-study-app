@@ -1,5 +1,3 @@
-// For more information on using drift, please see https://drift.simonbinder.eu/docs/getting-started/
-
 import 'package:drift/native.dart';
 import 'package:engineer_study_app/model/freezed/note/note_model.dart';
 import 'package:path_provider/path_provider.dart';
@@ -23,11 +21,11 @@ class NoteItem extends Table {
 
 LazyDatabase _openConnection() {
   // the LazyDatabase util lets us find the right location for the file async.
-  // これは、ファイルのロケーションを探すのに使えるLazyDatabase utilを許可します。
+  // これは、ファイルのロケーションを探すのに使えるLazyDatabase utilを許可。
   return LazyDatabase(() async {
     // put the database file, called db.sqlite here, into the documents folder
     // for your app.
-    // ここに、db.sqliteというファイルを、あなたのアプリのドキュメントフォルダに置きます。
+    // ここに、db.sqliteというファイルを、アプリのドキュメントフォルダに置く。
     final dbFolder = await getApplicationDocumentsDirectory();
     //Path to a directory where the application may place data that is user-generated, or that cannot otherwise be recreated by your application.
     //データを配置することができるディレクトリのパス。

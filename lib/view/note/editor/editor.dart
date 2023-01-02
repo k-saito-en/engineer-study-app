@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:engineer_study_app/model/db/note_db.dart';
 import 'package:flutter/material.dart';
 
@@ -14,17 +16,19 @@ class Editor extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 各プロバイダーの状態を監視している
+    // NoteList画面で選択したNoteのListView内でのindexを保持
     final noteIndex = ref.read(currentNoteIndexProvider.notifier).state;
-    // final isLargeScreen = ref.watch(isLargeScreenProvider);
+    // 現在のDBの状態を提供するプロバイダー
     final noteProvider = ref.watch(noteDatabaseProvider.notifier);
+    // 現在DBに保存されているNoteを保持
     List<NoteItemData> noteItems = noteProvider.state.noteItems;
-
+    // 現在編集中のNoteの状態を提供するプロバイダー
+    // NoteListで押下したNoteの情報を保持し、本画面に表示するために使う
     final editNoteProvider = ref.watch(editingNoteProvider.notifier);
 
+    // NoteListから受け取った情報を元にTextFieldに内容表示
     final currentNoteItem = noteItems[noteIndex];
 
-    // 新規作成の場合の処理
     final titleController = useTextEditingController();
     titleController.text = currentNoteItem.title;
 
@@ -66,13 +70,9 @@ class Editor extends HookConsumerWidget {
                 )
               ]),
             ),
-            // widgetの大きさが端末画面以上になる場合にスクロールできるようにするwidget
             body: TabBarView(children: [
-              // previewタブの実装
-              // Container(
-              //     margin: const EdgeInsets.all(20),
-              //     child: Markdown(data: editNoteProvider.state.noteText)),
-              PreviewTab(),
+              // previewタブ
+              const PreviewTab(),
               // editingタブの実装
               SingleChildScrollView(
                 child: Column(
@@ -95,15 +95,14 @@ class Editor extends HookConsumerWidget {
                           hintText: 'Note name',
                         ),
                         controller: titleController,
+                        // 内容変更時、即座に変更内容をTempNoteItemDataに反映
                         onChanged: (value) {
                           editNoteProvider.updateTempTitle(value);
-                          // temp = temp.copyWith(title: value);
                         },
+                        // 入力完了後、即座に変更内容をTempNoteItemDataに反映
                         onSubmitted: (value) {
                           editNoteProvider.updateTempTitle(value);
-                          // temp = temp.copyWith(title: value);
                         },
-                        enabled: currentNoteItem != null,
                       ),
                     ),
                     // メモ本文入力フィールドの実装
@@ -125,29 +124,24 @@ class Editor extends HookConsumerWidget {
                           hintText: 'Note content',
                         ),
                         controller: textController,
+                        // 内容変更時、即座に変更内容をTempNoteItemDataに反映
                         onChanged: (value) {
                           editNoteProvider.updateTempNoteText(value);
-                          // temp = temp.copyWith(noteText: value);
                         },
-                        // 入力完了後の処理
+                        // 入力完了後、即座に変更内容をTempNoteItemDataに反映
                         onSubmitted: (value) {
                           editNoteProvider.updateTempNoteText(value);
-                          // temp = temp.copyWith(noteText: value);
                         },
-
-                        enabled: currentNoteItem != null,
                       ),
                     ),
                   ],
                 ),
               ),
             ])));
-
-    // tempがおかしい
-    // idは積み上がっていく
   }
 }
 
+//previewタブの実装
 class PreviewTab extends HookConsumerWidget {
   const PreviewTab({
     Key? key,

@@ -5,7 +5,7 @@ part 'note_model.freezed.dart';
 
 @freezed
 abstract class NoteStateData with _$NoteStateData {
-  //このクラスは、DBの状態を保持するクラスです。
+  //DBの状態を保持するクラスです。
   factory NoteStateData({
     @Default(false) bool isLoading,
     @Default(false) bool isReadyData,
@@ -15,7 +15,7 @@ abstract class NoteStateData with _$NoteStateData {
 
 @freezed
 abstract class TempNoteItemData with _$TempNoteItemData {
-  //このクラスは、編集中のNoteを保持するクラスです。
+  //編集中のNoteを保持するクラスです。
   factory TempNoteItemData({
     @Default(0) int id,
     @Default('') String title,

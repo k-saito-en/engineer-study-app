@@ -11,7 +11,7 @@ class NotifySetting extends HookConsumerWidget {
     final state = useState(0);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification Setting'),
+        title: const Text('Notification Setting'),
       ),
       body: Column(
         children: [
