@@ -27,7 +27,7 @@
 │   │   └── settings_view.dart
 │   └── timeline
 │       └── timeline_view.dart
-└── view_model                                 ユーザーからのアクションに応じて画面表示を変更するロジック
+└── view_model                                  ユーザーからのアクションに応じて画面表示を変更するロジック
     ├── note
     │   └── note_provider.dart
     └── timeline
