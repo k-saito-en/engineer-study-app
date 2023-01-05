@@ -13,6 +13,17 @@
 | ---- | ---- | ---- | ---- |
 |![Screenshot_20230105-103835](https://user-images.githubusercontent.com/111550856/210685160-a30de5f6-51cc-42cd-b9f6-9f190f66f531.png) | ![Screenshot_20230105-103855](https://user-images.githubusercontent.com/111550856/210685173-25a90d20-f44a-452c-8d53-74bf69632dbe.png)|![Screenshot_20230105-103931](https://user-images.githubusercontent.com/111550856/210685380-b355e445-c78d-4fc6-bf24-475c4185293a.png)|![Screenshot_20230105-103923](https://user-images.githubusercontent.com/111550856/210685464-e79abe72-4c37-495b-a966-fc7bab91176e.png)|
 
+後でgif画像を添付し直す
+メモ新規作成
+https://user-images.githubusercontent.com/111550856/210686424-ab32eada-2cb3-41af-b534-2c510cc5d144.mp4
+
+メモ編集
+https://user-images.githubusercontent.com/111550856/210686473-90194df3-a910-43b5-9db4-c53f712112ad.mp4
+
+メモ削除
+https://user-images.githubusercontent.com/111550856/210686520-705ed1f0-281b-427c-a34f-8ecec385ad2f.mp4
+
+
 
 ## フォルダ構成
 <pre>
