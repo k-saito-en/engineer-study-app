@@ -17,7 +17,11 @@
 <img src="https://user-images.githubusercontent.com/111550856/210924562-4311a83a-a5ef-4928-a19e-8fd985dfe624.gif" width="50%">
 
 
-
+## ビルド方法
+### ソースコードをクローン
+```
+git clone https://github.com/k-saito-en/engineer-study-app.git
+```
 
 
 ## フォルダ構成
