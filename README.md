@@ -45,7 +45,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 
 # 技術スタック
 - アプリ機能
-  - markdown形式のメモ表示と編集
+  - [flutter_markdown](https://pub.dev/packages/shared_preferences)でのmarkdown形式のメモ表示と編集
   - メモを作成日順に並べ替える
   - メモに通知日時を付与し、TODOリストとして使用（実装途中）
   - GitHub リポジトリの検索と詳細表示（実装予定）
