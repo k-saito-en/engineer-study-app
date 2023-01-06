@@ -22,7 +22,15 @@ __ソースコードをクローン__
 ```
 git clone https://github.com/k-saito-en/engineer-study-app.git
 ```
+__GitHubの個人アクセストークンを取得__
 
+本アプリで使用する GitHub の[個人アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)を取得して、カレントディレクトリで次のコマンドを実行してください。
+```
+# 引数で与えられた環境変数を基にビルドに必要な `lib/util/env/env.dart` を作成してくれます。
+# 作成された `lib/util/env/env.dart` を直接編集しても大丈夫です。
+
+bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列の初期値]
+```
 
 ## フォルダ構成
 <pre>
