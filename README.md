@@ -108,3 +108,6 @@ flutter pub run build_runner build
 # 2回目以降　（不整合が起きたファイルを削除するコマンドを付加）
 % flutter pub run build_runner build --delete-conflicting-outputs
 ```
+
+README参考
+[github-search](https://github.com/susatthi/github-search)
