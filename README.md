@@ -18,7 +18,7 @@
 
 
 ## ビルド方法
-### ソースコードをクローン
+__ソースコードをクローン__
 ```
 git clone https://github.com/k-saito-en/engineer-study-app.git
 ```
