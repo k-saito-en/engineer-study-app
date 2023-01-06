@@ -43,7 +43,17 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 |  `app-debug`  |    アプリ向けデバッグビルド    |
 |  `app-release`  |    アプリ向けリリースビルド    |
 
-
+# 技術スタック
+- アプリ機能
+  - markdown形式のメモ表示と編集
+  - メモを作成日順に並べ替える
+  - メモに通知日時を付与し、TODOリストとして使用（実装途中）
+  - GitHub リポジトリの検索と詳細表示（実装予定）
+  - Sliver を使った無限スクロール対応（実装予定）
+- [Drift](https://pub.dev/packages/drift)を利用したローカルデータベース構築
+- [hooks_riverpod](https://pub.dev/packages/hooks_riverpod)・[freezed](https://pub.dev/packages/freezed)によるDB・メモ表示画面の状態管理
+- ダークモードへの対応
+- [shared_preferences](https://pub.dev/packages/shared_preferences)での設定情報保持
 
 ## フォルダ構成
 <pre>
