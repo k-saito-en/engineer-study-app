@@ -31,6 +31,11 @@ __GitHubの個人アクセストークンを取得__
 
 bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列の初期値]
 ```
+|  パラメータ  |        |  説明  |
+| ---- | ---- | ---- |
+|  `-g`  |  `Must`  |  値には [GitHub 個人アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) を設定してください。  |
+|  `-s`  |  `Optional`  |  値には好きな文字列を設定してください。指定しない場合は空文字が設定されます。  |
+|  `-h`  |        |  ヘルプを表示します。  |
 
 ## フォルダ構成
 <pre>
