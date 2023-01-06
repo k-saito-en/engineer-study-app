@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_use_of_protected_member
+// ignore_for_file: invalid_use_of_protected_member, unused_local_variable
 
 import 'package:engineer_study_app/model/db/note_db.dart';
 import 'package:engineer_study_app/view/note/editor/editor.dart';
@@ -11,13 +11,14 @@ class NoteList extends HookConsumerWidget {
   const NoteList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 現在のDBの状態を保持、提供
+    final noteState = ref.watch(noteDatabaseProvider);
     // TempNoteItemDataの状態取得、編集を可能にする
     final editNoteProvider = ref.watch(editingNoteProvider.notifier);
     // Providerのメソッドや値を取得。
     final noteProvider = ref.watch(noteDatabaseProvider.notifier);
     // Providerが保持しているnoteItemsを取得。
     List<NoteItemData> noteItems = noteProvider.state.noteItems;
-    
 
     return Scaffold(
       body: ListView(children: [
@@ -60,8 +61,8 @@ class NoteList extends HookConsumerWidget {
                     noteItems[i].isNotify);
                 // temp = temp.copyWith(id: noteItems[i].id);
                 ref.read(currentNoteIndexProvider.notifier).state = i;
-                await Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => const Editor()));
+                await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Editor()));
               },
             ),
           ),
