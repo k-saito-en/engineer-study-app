@@ -111,8 +111,4 @@ flutter pub run build_runner build
 % flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-README参考
-
-[素敵なREADMEの書き方✨](https://qiita.com/koeri3/items/f85a617dcb6efebb2cab)
-[github-search](https://github.com/susatthi/github-search)
 
