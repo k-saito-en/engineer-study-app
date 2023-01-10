@@ -66,7 +66,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 <pre>
 .
 ├── main.dart
-├── model　　　　　　　　　　　　　　　　　　　　　　　　DB・状態管理モデルの定義
+├── model　　　　　　　　　　　　　　　　　　　　　　　　
 │   ├── db
 │   │   ├── note_db.dart
 │   │   └── note_db.g.dart
@@ -76,7 +76,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 │   │       └── note_model.freezed.dart
 │   └── sp
 │       └── notify_setting_sp.dart
-├── view　　　　　　　　　　　　　　　　　　　　　　　　画面表示の実装
+├── view　　　　　　　　　　　　　　　　　　　　　　　　
 │　　　　　　├── root.dart
 │   ├── note
 │   │   ├── editor
@@ -88,7 +88,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 │   │   └── settings_view.dart
 │   └── timeline
 │       └── timeline_view.dart
-└── view_model                                  ユーザーからのアクションに応じて画面表示を変更するロジック
+└── view_model                                  
     ├── note
     │   └── note_provider.dart
     └── timeline
