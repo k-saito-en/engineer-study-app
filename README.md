@@ -66,7 +66,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 <pre>
 .
 ├── main.dart
-├── model　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　DB・状態管理モデルの定義
+├── model　　　　　　　　　　　　　　　　　　　　　　　　DB・状態管理モデルの定義
 │   ├── db
 │   │   ├── note_db.dart
 │   │   └── note_db.g.dart
@@ -76,7 +76,7 @@ bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列�
 │   │       └── note_model.freezed.dart
 │   └── sp
 │       └── notify_setting_sp.dart
-├── view　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　画面表示の実装
+├── view　　　　　　　　　　　　　　　　　　　　　　　　画面表示の実装
 │　　　　　　├── root.dart
 │   ├── note
 │   │   ├── editor
