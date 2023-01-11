@@ -24,7 +24,7 @@ __ソースコードをクローン__
 ```
 git clone https://github.com/k-saito-en/engineer-study-app.git
 ```
-__GitHubの個人アクセストークンを取得 （⚠️以下、今後実装予定の「GitHubリポジトリ検索機能」の前準備）__
+__GitHubの個人アクセストークンを取得 （⚠️以下、今後実装予定の「GitHubリポジトリ検索機能」の前準備です）__
 
 本アプリで使用する GitHub の[個人アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)を取得して、カレントディレクトリで次のコマンドを実行してください。
 ```
