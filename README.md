@@ -19,32 +19,6 @@
 <img src="https://user-images.githubusercontent.com/111550856/210924562-4311a83a-a5ef-4928-a19e-8fd985dfe624.gif" width="50%">
 
 
-## ビルド方法
-__ソースコードをクローン__
-```
-git clone https://github.com/k-saito-en/engineer-study-app.git
-```
-__GitHubの個人アクセストークンを取得 （⚠️以下、今後実装予定の「GitHubリポジトリ検索機能」の前準備です）__
-
-本アプリで使用する GitHub の[個人アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)を取得して、カレントディレクトリで次のコマンドを実行してください。
-```
-# 引数で与えられた環境変数を基にビルドに必要な `lib/util/env/env.dart` を作成してくれます。
-# 作成された `lib/util/env/env.dart` を直接編集しても大丈夫です。
-
-bin/flutter_env -g [GitHub 個人アクセストークン] -s [検索文字列の初期値]
-```
-|  パラメータ  |        |  説明  |
-| ---- | ---- | ---- |
-|  `-g`  |  `Must`  |  値には [GitHub 個人アクセストークン](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) を設定してください。  |
-|  `-s`  |  `Optional`  |  値には好きな文字列を設定してください。指定しない場合は空文字が設定されます。  |
-|  `-h`  |        |  ヘルプを表示します。  |
-
-ビルド
-|  Configurations 名  |    説明    |
-| ---- | ---- |
-|  `app-debug`  |    アプリ向けデバッグビルド    |
-|  `app-release`  |    アプリ向けリリースビルド    |
-
 ## 技術スタック
 - アプリ機能
   - [flutter_markdown](https://pub.dev/packages/shared_preferences)でのmarkdown形式のメモ表示と編集
